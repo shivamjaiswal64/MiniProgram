@@ -1,4 +1,4 @@
-package com.example.miniprogram;
+package com.kauale.miniprogram;
 
 import org.junit.Test;
 
