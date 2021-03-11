@@ -1,4 +1,4 @@
-package com.example.miniprogram;
+package com.kauale.miniprogram;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,18 +13,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import  android.net.Uri;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
 import static androidx.core.app.NotificationCompat.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button buttonA;
-    Button buttonB;
-    Button buttonC;
+    Button buttonA,buttonB,buttonC;
+    Button buttonSearch;
     TextView textView,tempText;
     EditText editText;
+    String pasteData;
     public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
     private final static String default_notification_channel_id = "default" ;
     @Override
@@ -37,14 +37,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView = (TextView) findViewById(R.id.txt);
         tempText = (TextView) findViewById(R.id.tempTxt);
         editText = (EditText) findViewById(R.id.editTxt);
+        buttonSearch = (Button) findViewById(R.id.search);
         buttonA.setOnClickListener(this);
         buttonB.setOnClickListener(this);
         buttonC.setOnClickListener(this);
+        buttonSearch.setOnClickListener(this);
         //Clipboard snippet //https://developer.android.com/guide/topics/text/copy-paste#ClipboardClasses
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
         try{
-        String pasteData =(String) item.getText();
+        pasteData =(String) item.getText();
         editText.setText(pasteData);
         }catch (Exception e){
             System.out.println(e);
@@ -93,11 +95,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             } , delayInMilliseconds) ;
         }
+        if(v.getId() == R.id.search){
+            //String url = parseFun(pasteData);
+            String url = "http://www.google.com/search?q=KauaLe";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        }
 
 
 
 
     }
+    /*
+    public String parseFun(String str){
+        String regex = "\\s+";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        str= matcher.replaceAll("+");
+        str = "\"http://www.google.com/search?q="+str+"\""; // Error in parsing text into Uri
+        return  str;
+    }
+    */
 
 
 }
