@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/txt"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#012dda"
+        android:text="Hello KauaLe !"
+        android:textSize="40dp"/>
+
+    <TextView
+        android:id="@+id/tempTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
+        android:text="Click below button" />
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt"
+        android:layout_marginTop="50dp"
+        android:background="#DBFB28"
+        android:layout_marginStart="43dp"
+        android:layout_centerHorizontal="true"
+        android:text="A"
+        android:textSize="40dp" />
+
+    <Button
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:id="@+id/btn2"
+        android:background="#012dda"
+        android:layout_marginStart="43dp"
+        android:textSize="40dp"
+        android:layout_below="@id/btn1"
+        android:layout_centerHorizontal="true"
+        android:text="B" />
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="43dp"
+        android:layout_below="@id/btn2"
+        android:background="#E74B0D"
+        android:layout_centerHorizontal="true"
+        android:text="C"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTxt"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="55dp"
+        android:ems="40"
+        android:text="Version 0.0.1"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/editTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn3"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search" />
+
+
+</RelativeLayout>
