@@ -1,5 +1,6 @@
 package com.kauale.miniprogram;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,39 +10,49 @@ import android.content.ClipboardManager;
 import android.content.ClipData;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import  android.net.Uri;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import static androidx.core.app.NotificationCompat.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button buttonA,buttonB,buttonC;
+    Button btnA,btnB,btnC,btn5,btnContact,btn7;
     Button buttonSearch;
     TextView textView,tempText;
     EditText editText;
     String pasteData;
     public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
     private final static String default_notification_channel_id = "default" ;
+    private Toast toast;
+    private long lastBackPressTime = 0;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE=1337;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonA = (Button) findViewById(R.id.btn1);
-        buttonB = (Button) findViewById(R.id.btn2);
-        buttonC = (Button) findViewById(R.id.btn3);
+        btnA = (Button) findViewById(R.id.btn1);
+        btnB = (Button) findViewById(R.id.btn2);
+        btnC = (Button) findViewById(R.id.btn3);
         textView = (TextView) findViewById(R.id.txt);
         tempText = (TextView) findViewById(R.id.tempTxt);
         editText = (EditText) findViewById(R.id.editTxt);
         buttonSearch = (Button) findViewById(R.id.search);
-        buttonA.setOnClickListener(this);
-        buttonB.setOnClickListener(this);
-        buttonC.setOnClickListener(this);
+        btn5 = (Button) findViewById(R.id.button5) ;
+        btnContact = (Button)findViewById(R.id.btnContact);
+        btn7 = (Button)findViewById(R.id.button7);
+        btnA.setOnClickListener(this);
+        btnB.setOnClickListener(this);
+        btnC.setOnClickListener(this);
         buttonSearch.setOnClickListener(this);
+        btn5.setOnClickListener(this);
+        btnContact.setOnClickListener(this);
         //Clipboard snippet //https://developer.android.com/guide/topics/text/copy-paste#ClipboardClasses
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
@@ -102,7 +113,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             i.setData(Uri.parse(url));
             startActivity(i);
         }
+        if(v.getId() == R.id.button5){
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+           // startActivity(intent);
+           // Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
+            // start the image capture Intent
+            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        } // Ref: https://stackoverflow.com/questions/13977245
+        if(v.getId() == R.id.btnContact){
+            startActivity(new Intent(MainActivity.this, MainActivity2.class));
+        }
 
 
 
@@ -118,5 +139,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     */
 
+    @SuppressLint("WrongConstant")
+    @Override
+    public void onBackPressed() {
+        if (this.lastBackPressTime < System.currentTimeMillis() - 4000) {
+            toast = Toast.makeText(this, "Press back again to close this app", 4000);
+            toast.show();
+            this.lastBackPressTime = System.currentTimeMillis();
+        } else {
+            if (toast != null) {
+                toast.cancel();
+            }
+            super.onBackPressed();
+        }
+    } // Ref: https://stackoverflow.com/a/21157420/13976917
 
 }
