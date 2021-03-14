@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSearch.setOnClickListener(this);
         btn5.setOnClickListener(this);
         btnContact.setOnClickListener(this);
-        //Clipboard snippet //https://developer.android.com/guide/topics/text/copy-paste#ClipboardClasses
+        //Clipboard snippet // Ref: https://developer.android.com/guide/topics/text/copy-paste#ClipboardClasses
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
         try{
@@ -64,17 +64,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         tempText.setText(null);
         if(v.getId()==R.id.btn1){
-            textView.setText("A is clicked");
+            textView.setText(R.string.a_clicked);
         }
         if (v.getId()==R.id.btn2){
-            textView.setText("B is clicked");
+            textView.setText(R.string.b_clicked);
         }
         if (v.getId()==R.id.btn3){
-            textView.setText("C is CLicked");
+            textView.setText(R.string.c_clicked);
             Intent notificationIntent = new Intent(MainActivity. this, MainActivity. class ) ;
             notificationIntent.addCategory(Intent. CATEGORY_LAUNCHER ) ;
             notificationIntent.setAction(Intent. ACTION_MAIN ) ;

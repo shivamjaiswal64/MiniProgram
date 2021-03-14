@@ -2,16 +2,20 @@
     <string name="app_name">MiniProgram</string>
     <string name="title_activity_main2">MainActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="contact">Contact</string>
 
 
-    <string name="version">Version 0.0.3</string>
+    <string name="version">Version 0.0.4</string>
     <string name="text_hello">Hello KauaLe !</string>
     <string name="instruction">Click below button</string>
     <string name="button7">Button7</string>
     <string name="button5">Camera</string>
+    <string name="a_clicked">A is clicked</string>
+    <string name="b_clicked">B is clicked</string>
+    <string name="c_clicked">C is clicked</string>
+
 </resources>

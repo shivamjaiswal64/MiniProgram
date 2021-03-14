@@ -21,8 +21,8 @@
         android:id="@+id/txt"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#012dda"
-        android:text="Hello KauaLe !"
+        android:textColor="#FFA500"
+        android:text="@string/text_hello"
         android:textSize="40dp"/>
 
     <TextView
@@ -32,58 +32,53 @@
         android:layout_below="@+id/txt"
         android:layout_marginTop="15dp"
         android:textSize="20dp"
-        android:text="Click below button" />
+        android:text="@string/instruction" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt"
-        android:id="@+id/layOut"
+        android:id="@+id/layOut1"
         android:orientation="horizontal">
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="#DBFB28"
-        android:layout_marginStart="43dp"
-        android:layout_centerHorizontal="true"
-        android:text="A"
-        android:textSize="40dp" />
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="#DBFB28"
+            android:layout_marginStart="43dp"
+            android:text="A"
+            android:textSize="40dp" />
 
-    <Button
+        <Button
 
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:id="@+id/btn2"
-        android:background="#012dda"
-        android:layout_marginStart="43dp"
-        android:textSize="40dp"
-        android:layout_below="@id/btn1"
-        android:layout_centerHorizontal="true"
-        android:text="B" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:id="@+id/btn2"
+            android:background="#FFA500"
+            android:layout_marginStart="43dp"
+            android:textSize="40dp"
+            android:text="B" />
 
-    <Button
-        android:id="@+id/btn3"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="43dp"
-        android:layout_below="@id/btn2"
-        android:background="#E74B0D"
-        android:layout_centerHorizontal="true"
-        android:text="C"
-        android:textSize="40dp" />
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="43dp"
+            android:background="#FFA500"
+            android:text="C"
+            android:textSize="40dp" />
     </LinearLayout>
 
     <EditText
         android:id="@+id/editTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layOut"
+        android:layout_below="@+id/layOut1"
         android:layout_marginTop="30dp"
         android:layout_marginStart="40dp"
         android:lines="5"
@@ -100,7 +95,7 @@
         android:layout_marginStart="43dp"
         android:layout_marginTop="55dp"
         android:ems="40"
-        android:text="Version 0.0.2"
+        android:text="@string/version"
         android:textSize="20dp" />
 
 
@@ -109,10 +104,41 @@
         android:id="@+id/search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/versionTxt"
+        android:layout_toEndOf="@+id/versionTxt"
         android:layout_below="@+id/editTxt"
         android:layout_marginTop="50dp"
         android:text="Search" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/versionTxt"
+        android:layout_marginTop="20dp"
+        android:id="@+id/Layout3"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="43dp"
+        android:text="@string/button5"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="43dp"
+            android:id="@+id/btnContact"
+            android:text="@string/contact"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="43dp"
+            android:id="@+id/button7"
+            android:text="@string/button7"/>
+    </LinearLayout>
 
 </RelativeLayout>
