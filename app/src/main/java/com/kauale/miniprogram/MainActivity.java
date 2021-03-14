@@ -23,13 +23,11 @@ import android.widget.TextView;
 import  android.net.Uri;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 
 import static androidx.core.app.NotificationCompat.*;
 
@@ -56,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setDataFromClipBoard() {
         //Clipboard snippet // Ref: https://developer.android.com/guide/topics/text/copy-paste#ClipboardClasses
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
         try{
+        ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
             pasteData =(String) item.getText();
             editText.setText(pasteData);
         }catch (Exception e){
@@ -140,15 +138,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button5:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)  == PackageManager.PERMISSION_GRANTED){
-                        try {
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-                        } catch (Exception e) {
-                            Toast.makeText(this,"Unable to find application to open camera",Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
-                    }else requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+                    if(checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                    }else requestPermission();
                 }
                 break;// Ref: https://stackoverflow.com/questions/13977245
             case R.id.btnContact:
@@ -159,19 +152,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)  != PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(this,"Unable to launch camera permission denied.", Toast.LENGTH_SHORT).show();
-                }
-            }else {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-            }
-        }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void requestPermission() {
+        requestPermissions(new String[]{Manifest.permission.CAMERA},CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
     @Override

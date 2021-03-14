@@ -1,10 +1,19 @@
 package com.kauale.miniprogram;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity2 extends AppCompatActivity {
+    ActivityMainBinding activityMainBinding;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,7 +21,47 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.content_main);
 
 
+        initUI();
+        setListener();
+    }
 
+    private void initUI() {
+        drawerLayout = activityMainBinding.drawerLayout;
+        activityMainBinding.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectDrawerItem(item);
+                return false;
+            }
+        });
+    }
+    private void setListener() {
+        activityMainBinding.expandedMenu.setOnClickListener(v -> activityMainBinding.drawerLayout.openDrawer(GravityCompat.START));
+    }
+
+    public void selectDrawerItem(MenuItem menuItem) {
+
+
+        switch (menuItem.getItemId()) {
+            case R.id.drawer_email_us:
+                Log.e("TAG", "Email Us");
+                break;
+            case R.id.drawer_share:
+                Log.e("TAG", "Share Us");
+                break;
+            case R.id.drawer_about_us:
+                Log.e("TAG", "About Us");
+                break;
+            default:
+                Log.e("TAG", "God knows");
+        }
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        // Close the navigation drawer
+        activityMainBinding.drawerLayout.closeDrawers();
+    }
+}
 
      /*   Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -27,7 +76,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
       */
-    }
+
     /*
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -65,4 +114,3 @@ public class MainActivity2 extends AppCompatActivity {
     }
     */
 
-}
